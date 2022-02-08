@@ -83,7 +83,7 @@ thermo.begin(MAX31865_2WIRE);  // set to 2WIRE or 4WIRE as necessary
 
 
 
-//  // Initialize SPIFFS
+//  // Initialize SPIFFSs
 //  if(!SPIFFS.begin()){
 //    Serial.println("An Error has occurred while mounting SPIFFS");
 //    return;
