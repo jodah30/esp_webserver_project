@@ -33,10 +33,18 @@ copies or substantial portions of the Software. -->
 </head>
 <body>
   <div class="topnav">
-    <h1>Readings from Room 3469 </h1>
+    <h1>CaféJona </h1>
+  </div>
+  %BUTTONPLACEHOLDER%
+  <div class="topnav">
+    <h1>Temperature Room 3469 </h1>
   </div>
   <div id="chart-temperature" class="container"></div>
+  <p><span id="textSliderValue">Solltemperatur: %SLIDERVALUE%&degC</span></p>
+  <p><input type="range" onchange="updateSliderPWM(this)" id="pwmSlider" min="0" max="255" value="%SLIDERVALUE%" step="1" class="slider"></p>
+
 </body>
+
 <script>
 // this sets to utc
 Highcharts.setOptions({
@@ -84,6 +92,27 @@ setInterval(function ( ) {
   xhttp.send();
 }, 1000 ) ;
 
+</script>
+
+<script>
+function updateSliderPWM(element) {
+  var sliderValue = document.getElementById("pwmSlider").value;
+
+  document.getElementById("textSliderValue").innerHTML = "Solltemperatur: " + sliderValue + "&degC" ;
+  console.log(sliderValue);
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "/slider?value="+sliderValue, true);
+  xhr.send();
+}
 
 </script>
+
+<script>function toggleCheckbox(element) {
+  var xhr = new XMLHttpRequest();
+  if(element.checked){ xhr.open("GET", "/update?output="+element.id+"&state=1", true); }
+  else { xhr.open("GET", "/update?output="+element.id+"&state=0", true); }
+  xhr.send();
+}
+</script>
+
 </html>
