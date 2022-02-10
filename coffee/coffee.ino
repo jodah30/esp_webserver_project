@@ -44,16 +44,15 @@ const int resolution = 8;
 const char* PARAM_INPUT = "value";
 
 // setup bools for timer
+bool stunde_eins = 0;
+bool stunde_zwei = 0;
+bool stunde_vier = 0;
+bool stunde_acht = 0;
 
-// bool stunde_eins = 0
-// bool stunde_zwei = 0
-// bool stunde_vier = 0
-// bool stunde_acht = 0
-//
-// bool minute_funf = 0
-// bool minute_zehn = 0
-// bool minute_zwanzig = 0
-// bool minute_dreisig = 0
+bool minute_funf = 0;
+bool minute_zehn = 0;
+bool minute_zwanzig = 0;
+bool minute_dreisig = 0;
 
 
 

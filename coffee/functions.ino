@@ -30,24 +30,24 @@ String readBME280Temperature() {
 
 
 String processor(const String& var){
-  //Serial.println(var);
+  //return slidervalue, setpoint of temp
   if (var == "SLIDERVALUE"){
     return sliderValue;
   }
-  // second template
+  // buttons for html
   else  if(var == "BUTTONPLACEHOLDER"){
     String buttons = "";
-    buttons += "<h4>Stunden -1-  Minuten-5-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"17\" " + outputState(17) + "><span class=\"slider_switch\"></span></label>";
-    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"3\" " + outputState(3) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<h4>Stunden -1-  Minuten-5-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S1\" " + State_of_bool(stunde_eins) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m5\" " + State_of_bool(minute_funf) + "><span class=\"slider_switch\"></span></label>";
 
-    buttons += "<h4>Stunden -2-  Minuten-10-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"4\" " + outputState(4) + "><span class=\"slider_switch\"></span></label>";
-    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"17\" " + outputState(17) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<h4>Stunden -2-  Minuten-10-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S2\" " + State_of_bool(stunde_zwei) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m10\" " + State_of_bool(minute_zehn) + "><span class=\"slider_switch\"></span></label>";
 
-    buttons += "<h4>Stunden -4-  Minuten-20-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"13\" " + outputState(13) + "><span class=\"slider_switch\"></span></label>";
-    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"14\" " + outputState(14) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<h4>Stunden -4-  Minuten-20-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S4\" " + State_of_bool(stunde_vier) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m20\" " + State_of_bool(minute_zwanzig) + "><span class=\"slider_switch\"></span></label>";
 
-    buttons += "<h4>Stunden -8-  Minuten-30-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"15\" " + outputState(15) + "><span class=\"slider_switch\"></span></label>";
-    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"16\" " + outputState(16) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<h4>Stunden -8-  Minuten-30-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S8\" " + State_of_bool(stunde_acht) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m30\" " + State_of_bool(minute_dreisig) + "><span class=\"slider_switch\"></span></label>";
 
     return buttons;
   }
@@ -57,21 +57,72 @@ String processor(const String& var){
 
 
 
+String State_of_bool(bool buttonstate){
+  if (buttonstate == 1){
+    Serial.print("This Button is ");
+    Serial.println(buttonstate);
+    return "checked";
+  }
+  else {
+    Serial.print("This Button is off: ");
+    Serial.println(stunde_eins);
+    return "";
+  }
+}
 
+bool write_input_to_bool(String inputMessage1, String inputMessage2){
+    if (inputMessage1 == "S1"){
+    stunde_eins= inputMessage2;
+    return stunde_eins;
+    }
+    else if (inputMessage1 == "S2"){
+    stunde_zwei= inputMessage2;
+    return stunde_zwei;
+    }
+    else if (inputMessage1 == "S4"){
+    stunde_vier= inputMessage2;
+    return stunde_vier;
+    }
+    else if (inputMessage1 == "S8"){
+    stunde_acht= inputMessage2;
+    return stunde_acht;
+    }
+
+    if (inputMessage1 == "m5"){
+    minute_funf= inputMessage2;
+    return minute_funf;
+    }
+    else if (inputMessage1 == "m10"){
+    minute_zehn= inputMessage2;
+    return minute_zehn;
+    }
+    else if (inputMessage1 == "m20"){
+    minute_zwanzig= inputMessage2;
+    return minute_zwanzig;
+    }
+    else if (inputMessage1 == "m30"){
+    minute_dreisig= inputMessage2;
+    return minute_dreisig;
+    }
+}
+
+// function for read state of buttons
 String outputState(int output){
   if(digitalRead(output)){
-    Serial.print("outputStat is: ");
+    Serial.print("This Button is on: ");
     Serial.println(output);
     return "checked";
   }
   else {
+    Serial.print("This Button is off: ");
+    Serial.println(output);
     return "";
   }
 }
 
 
 
-
+// wifi
 void connect_to_wifi(const char* ssid, const char* password){
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
@@ -79,15 +130,13 @@ void connect_to_wifi(const char* ssid, const char* password){
     delay(1000);
     Serial.println("Connecting to WiFi..");
   }
-
-  // Print ESP32 Local IP Address
+// Print ESP32 Local IP Address
   Serial.println(WiFi.localIP());
 
 }
 
 
-//dfs
-void nothing
+
 
 void  server_and_requests(){
 //root
@@ -127,13 +176,14 @@ server.on("/update", HTTP_GET, [] (AsyncWebServerRequest *request) {
   if (request->hasParam(PARAM_INPUT_1) && request->hasParam(PARAM_INPUT_2)) {
     inputMessage1 = request->getParam(PARAM_INPUT_1)->value();
     inputMessage2 = request->getParam(PARAM_INPUT_2)->value();
-    digitalWrite(inputMessage1.toInt(), inputMessage2.toInt());
+    //digitalWrite(inputMessage1.toInt(), inputMessage2.toInt());
+    write_input_to_bool(inputMessage1,inputMessage2);
   }
   else {
     inputMessage1 = "No message sent";
     inputMessage2 = "No message sent";
   }
-  Serial.print("GPIO: ");
+  Serial.print("Zeit: ");
   Serial.print(inputMessage1);
   Serial.print(" - Set to: ");
   Serial.println(inputMessage2);
