@@ -91,9 +91,18 @@ String processor(const String& var){
   // second template
   else  if(var == "BUTTONPLACEHOLDER"){
     String buttons = "";
-    buttons += "<h4>Output - GPIO 2</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"2\" " + outputState(2) + "><span class=\"slider_switch\"></span></label>";
-    buttons += "<h4>Output - GPIO 4</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"4\" " + outputState(4) + "><span class=\"slider_switch\"></span></label>";
-    buttons += "<h4>Output - GPIO 5</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"5\" " + outputState(5) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<h4>Stunden -1-  Minuten-5-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"17\" " + outputState(17) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"3\" " + outputState(3) + "><span class=\"slider_switch\"></span></label>";
+
+    buttons += "<h4>Stunden -2-  Minuten-10-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"4\" " + outputState(4) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"17\" " + outputState(17) + "><span class=\"slider_switch\"></span></label>";
+
+    buttons += "<h4>Stunden -4-  Minuten-20-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"13\" " + outputState(13) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"14\" " + outputState(14) + "><span class=\"slider_switch\"></span></label>";
+
+    buttons += "<h4>Stunden -8-  Minuten-30-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"15\" " + outputState(15) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"16\" " + outputState(16) + "><span class=\"slider_switch\"></span></label>";
+
     return buttons;
   }
   return String();
@@ -103,6 +112,8 @@ String processor(const String& var){
 
 String outputState(int output){
   if(digitalRead(output)){
+    Serial.print("outputStat is: ");
+    Serial.println(output);
     return "checked";
   }
   else {
@@ -114,6 +125,24 @@ String outputState(int output){
 void setup(){
   // Serial port for debugging purposes
 Serial.begin(115200);
+
+pinMode(17, OUTPUT);
+digitalWrite(17, LOW);
+pinMode(3, OUTPUT);
+digitalWrite(3, LOW);
+pinMode(4, OUTPUT);
+digitalWrite(4, LOW);
+pinMode(17, OUTPUT);
+digitalWrite(17, LOW);
+
+pinMode(13, OUTPUT);
+digitalWrite(13, LOW);
+pinMode(14, OUTPUT);
+digitalWrite(14, LOW);
+pinMode(15, OUTPUT);
+digitalWrite(15, LOW);
+pinMode(16, OUTPUT);
+digitalWrite(16, LOW);
 
 
 
