@@ -126,6 +126,8 @@ String outputState(int output){
 void connect_to_wifi(const char* ssid, const char* password){
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
+  Serial.print("wifi runs on core ");
+  Serial.println(xPortGetCoreID());
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
     Serial.println("Connecting to WiFi..");
@@ -139,6 +141,9 @@ void connect_to_wifi(const char* ssid, const char* password){
 
 
 void  server_and_requests(){
+
+Serial.print("server and request runs on core ");
+Serial.println(xPortGetCoreID());
 //root
  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send(SPIFFS, "/index.html", String(), false, processor);
@@ -149,7 +154,10 @@ server.serveStatic("/", SPIFFS, "/");  // send all files of root, used for stati
 
   // temperature
   server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest *request){
+    Serial.print("get /temp runs on core ");
+    Serial.println(xPortGetCoreID());
     request->send_P(200, "text/plain", readBME280Temperature().c_str());
+
   });
 
   // slider
