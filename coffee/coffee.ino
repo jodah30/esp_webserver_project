@@ -16,9 +16,10 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+//#include <NTPClient.h>
+#inlcude "time.h"
 
-#define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 32 // OLED display height, in pixels
+
 
 //Hardware SPi, declare Pin
 Adafruit_MAX31865 thermo = Adafruit_MAX31865(5);   //
@@ -53,11 +54,20 @@ bool minute_zwanzig = 0;
 bool minute_dreisig = 0;
 
 // Replace with your network credentials
-const char* ssid = "K-J";
+//const char* ssid = "K-J";
+const char* ssid = "Jonas iPhone";
 const char* password = "!Tru3L0v3!";
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
+
+
+//NTP
+const char* ntpServer = "pool.ntp.org";
+const long  gmtOffset_sec = 3600;
+const int   daylightOffset_sec = 3600;
+//const char updateInterval = 36000000;  // In ms
+
 
 // creating task handle
 TaskHandle_t Task0;
@@ -65,20 +75,22 @@ TaskHandle_t Task1;
 //Declaration OLED
 
 //Adafruit_SSD1306 display(128,32, &Wire, -1);
-#define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 32 // OLED display height, in pixels
-
-// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
-// The pins for I2C are defined by the Wire-library.
-// On an arduino UNO:       A4(SDA), A5(SCL)
-// On an arduino MEGA 2560: 20(SDA), 21(SCL)
-// On an arduino LEONARDO:   2(SDA),  3(SCL), ...
-#define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
-#define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+// #define SCREEN_WIDTH 128 // OLED display width, in pixels
+// #define SCREEN_HEIGHT 32 // OLED display height, in pixels
+// #define I2C_SDA 33 // new pins fot set others then the degailt one
+// #define I2C_SCL 32
+// #define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+// #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
+// //display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+// TwoWire I2COLED = TwoWire(1);
+//
+// Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &I2COLED, OLED_RESET);
 
 
 void setup(){
+
+
+
 //initialize Cores
 //create Task to run code in it
 xTaskCreatePinnedToCore(
@@ -115,12 +127,15 @@ ledcWrite(ledChannel, sliderValue.toInt());
 connect_to_wifi(ssid, password);
 //call  server function
 server_and_requests();
+//define ntp and Setup
+configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
 //Setup OLED
-//display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
-  Serial.println(F("SSD1306 allocation failed"));
-  for(;;); // Don't proceed, loop forever
-}
+//
+// I2COLED.begin(I2C_SDA,I2C_SCL,200000);
+// if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+//   Serial.println(F("SSD1306 allocation failed"));
+//   for(;;); // Don't proceed, loop forever
+// }
 
 }
 
