@@ -14,6 +14,8 @@ String readBME280Temperature() {
       delay(1);
    }
    float t=temp/anzahl_mittelung;
+   Serial.print("This readings runs on core ");
+   Serial.println(xPortGetCoreID());
 
   if (isnan(t)) {
     Serial.println("Failed to read from BME280 sensor!");
@@ -50,6 +52,14 @@ String processor(const String& var){
     buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m30\" " + State_of_bool(minute_dreisig) + "><span class=\"slider_switch\"></span></label>";
 
     return buttons;
+  }
+
+  else if( var =="WATERLEVEL"){
+    String waterlevel="";
+
+    waterlevel ="  <p style=\"height:  100px;  width: " +sliderValue + "px;  background-color: #FA6900;  border-radius: 5px;\">";
+
+    return waterlevel;
   }
   return String();
 }
@@ -131,7 +141,7 @@ void connect_to_wifi(const char* ssid, const char* password){
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
     Serial.println("Connecting to WiFi..");
-    
+
   }
 // Print ESP32 Local IP Address
   Serial.println(WiFi.localIP());
@@ -148,15 +158,23 @@ Serial.println(xPortGetCoreID());
 //root
  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send(SPIFFS, "/index.html", String(), false, processor);
+    Serial.println("get root request");
   });
+server.on("/settings", HTTP_GET, [](AsyncWebServerRequest *request){
+     request->send(SPIFFS, "/settings.html", String(), false, processor);
+     Serial.println("get settings request");
+   });
 // json adn css
 server.serveStatic("/", SPIFFS, "/");  // send all files of root, used for static files
+Serial.println("send static");
+//server.serveStatic("/settings", SPIFFS, "/highcharts.js");
+//testing new homePage
 
 
   // temperature
   server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest *request){
-    Serial.print("get /temp runs on core ");
-    Serial.println(xPortGetCoreID());
+    Serial.print("get /temp request ");
+
     request->send_P(200, "text/plain", readBME280Temperature().c_str());
 
   });
@@ -164,6 +182,7 @@ server.serveStatic("/", SPIFFS, "/");  // send all files of root, used for stati
   // slider
 server.on("/slider", HTTP_GET, [] (AsyncWebServerRequest *request) {
   String inputMessage;
+  Serial.print("get /slider request ");
   // GET input1 value on <ESP_IP>/slider?value=<inputMessage>
   if (request->hasParam(PARAM_INPUT)) {
     inputMessage = request->getParam(PARAM_INPUT)->value();

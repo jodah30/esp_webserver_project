@@ -17,7 +17,7 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 //#include <NTPClient.h>
-#inlcude "time.h"
+//#inlcude "time.h"
 
 
 
@@ -33,6 +33,7 @@ Adafruit_MAX31865 thermo = Adafruit_MAX31865(5);   //
 // Settings for build in led and Slider
 const int output =2; //gpio led
 String sliderValue = "80";
+String waterValue= "80";
 const char* PARAM_INPUT_1 = "output";
 const char* PARAM_INPUT_2 = "state";
 
@@ -61,7 +62,9 @@ const char* password = "!Tru3L0v3!";
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
 
-
+// Define NTP Client to get time
+// WiFiUDP ntpUDP;
+// NTPClient timeClient(ntpUDP, "pool.ntp.org");
 //NTP
 const char* ntpServer = "pool.ntp.org";
 const long  gmtOffset_sec = 3600;
@@ -96,7 +99,7 @@ void setup(){
 xTaskCreatePinnedToCore(
   codeForCore0,            /* Task function. */
   "Task0",                 /* name of task. */
-  1000,                    /* Stack size of task */
+  8192,                    /* Stack size of task */
   NULL,                     /* parameter of the task */
   1,                        /* priority of the task */
   &Task0,                   /* Task handle to keep track of created task */
@@ -127,6 +130,15 @@ ledcWrite(ledChannel, sliderValue.toInt());
 connect_to_wifi(ssid, password);
 //call  server function
 server_and_requests();
+// Initialize a NTPClient to get time
+  // timeClient.begin();
+  // // Set offset time in seconds to adjust for your timezone, for example:
+  // // GMT +1 = 3600
+  // // GMT +8 = 28800
+  // // GMT -1 = -3600
+  // // GMT 0 = 0
+  // timeClient.setTimeOffset(0);
+
 //define ntp and Setup
 configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
 //Setup OLED

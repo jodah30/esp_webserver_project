@@ -59,3 +59,7 @@ body {
     input:checked+.slider_switch {background-color: #b30000}
     input:checked+.slider_switch:before {-webkit-transform: translateX(52px); -ms-transform: translateX(52px); transform: translateX(52px)
 }
+ul.topnav {	list-style-type: none; margin: 0; padding: 0; overflow: hidden;	  background-color: #8B2323; border-radius: 12px; }
+ul.topnav li {float: left; width: 50%;  border-radius: 12px;}
+ul.topnav li a { display: block; color: #FFFFFF; text-align: center; padding: 5mm 2mm; text-decoration: none; }
+ul.topnav li a.active { background-color: #FF0000; }
