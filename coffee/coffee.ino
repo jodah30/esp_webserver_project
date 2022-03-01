@@ -54,6 +54,19 @@ bool minute_zehn = 0;
 bool minute_zwanzig = 0;
 bool minute_dreisig = 0;
 
+int istZeitH;
+int istZeitMin;
+
+int sollZeitH;
+int sollZeitMin;
+
+bool POWER = 0;
+unsigned long previousMillisprintT = 0;
+unsigned long intervalprintT = 30000;
+
+unsigned long previousMillisWifi = 0;
+unsigned long intervalWifi = 10000;
+
 // Replace with your network credentials
 //const char* ssid = "K-J";
 const char* ssid = "Jonas iPhone";
@@ -109,7 +122,7 @@ delay(500);
 xTaskCreatePinnedToCore(
   codeForCore1,            /* Task function. */
   "Task1",                 /* name of task. */
-  1000,                    /* Stack size of task */
+  8192,                    /* Stack size of task */
   NULL,                     /* parameter of the task */
   1,                        /* priority of the task */
   &Task1,                   /* Task handle to keep track of created task */

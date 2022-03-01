@@ -12,6 +12,7 @@ for (;;){
   // display.println("Hello, world!");
   // display.display();
   //
-
+  previousMillisWifi = WiFireconnect(previousMillisWifi);
+  
   }
 }

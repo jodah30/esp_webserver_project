@@ -39,17 +39,17 @@ String processor(const String& var){
   // buttons for html
   else  if(var == "BUTTONPLACEHOLDER"){
     String buttons = "";
-    buttons += "<h4>Stunden -1-  Minuten-5-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S1\" " + State_of_bool(stunde_eins) + "><span class=\"slider_switch\"></span></label>";
-    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m5\" " + State_of_bool(minute_funf) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<h4>Stunden und Minuten f&uuml;r Timer</h4><br /><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S1\" " + State_of_bool(stunde_eins) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >1h</label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m5\" " + State_of_bool(minute_funf) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >5m&nbsp</label><br />";
 
-    buttons += "<h4>Stunden -2-  Minuten-10-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S2\" " + State_of_bool(stunde_zwei) + "><span class=\"slider_switch\"></span></label>";
-    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m10\" " + State_of_bool(minute_zehn) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S2\" " + State_of_bool(stunde_zwei) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >2h</label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m10\" " + State_of_bool(minute_zehn) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >10m</label><br />";
 
-    buttons += "<h4>Stunden -4-  Minuten-20-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S4\" " + State_of_bool(stunde_vier) + "><span class=\"slider_switch\"></span></label>";
-    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m20\" " + State_of_bool(minute_zwanzig) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S4\" " + State_of_bool(stunde_vier) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >4h</label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m20\" " + State_of_bool(minute_zwanzig) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >20m</label><br />";
 
-    buttons += "<h4>Stunden -8-  Minuten-30-</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S8\" " + State_of_bool(stunde_acht) + "><span class=\"slider_switch\"></span></label>";
-    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m30\" " + State_of_bool(minute_dreisig) + "><span class=\"slider_switch\"></span></label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S8\" " + State_of_bool(stunde_acht) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >8h</label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m30\" " + State_of_bool(minute_dreisig) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >30m</label>";
 
     return buttons;
   }
@@ -57,8 +57,8 @@ String processor(const String& var){
   else if( var =="WATERLEVEL"){
     String waterlevel="";
 
-    waterlevel ="  <p style=\"height:  100px;  width: " +sliderValue + "px;  background-color: #FA6900;  border-radius: 5px;\">";
-
+    //waterlevel ="  <p style=\"height:  100px;  width: " +sliderValue + "px;  background-color: #FA6900;  border-radius: 5px;\">";
+    waterlevel =" <p style=\" position: absolute;background-color: #0047ab;width: 150px;height: calc(" +sliderValue+ "/256*145px);left:20px;border-radius: 5px;box-shadow:inset 5px -5px 0 rgba(0,0,0,0.07);bottom: -8px;\">";
     return waterlevel;
   }
   return String();
@@ -273,4 +273,18 @@ void printLocalTime(){
   strftime(timeWeekDay,10, "%A", &timeinfo);
   Serial.println(timeWeekDay);
   Serial.println();
+}
+
+//Chech Wifi status
+
+unsigned long WiFireconnect( unsigned long previousMillisWifi){
+  unsigned long currentMillis = millis();
+  if(currentMillis - previousMillisWifi >= intervalWifi  && WiFi.status() != WL_CONNECTED){
+  Serial.println("Try Reconnect WiFi") ;
+  WiFi.disconnect();
+  connect_to_wifi(ssid, password);
+
+  Serial.println(WiFi.status());
+  previousMillisWifi=currentMillis;
+  }
 }
