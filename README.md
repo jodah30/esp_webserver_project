@@ -2,7 +2,7 @@
 The old Coffeemaschines from VBM are beatiful and makes amazing coffee. Unfortunately the electronics and control are outdated. For challenging myself and learning new stuff i decide to update the electronics.
 ![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/$_59.JPG)
 
-Using microcontroler for precised temperature control on an 30years old Domobar Inox with useless feature like a webpage in the local network for monitorung and controling
+Using microcontroler for precised temperature control on an 30years old Domobar Inox with useless feature like wifi, a webpage in the local network for monitorung and controling
 -PID controller
 
 ## Hardware
@@ -17,7 +17,7 @@ Using microcontroler for precised temperature control on an 30years old Domobar 
    - target value
    - waterlevel
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3108.JPG' width = '500'/>
-7. Modified VDO Fueltank Sensor for waterlevel
+6. Modified VDO Fueltank Sensor for waterlevel
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3110.JPG' width = '500'/>
 
 
@@ -40,19 +40,25 @@ Using microcontroler for precised temperature control on an 30years old Domobar 
  
 6.Slider for target temperature
 
-7.Wakeup timer
 
-<img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7131.PNG' width = '500'/>
+7.Chart for Temperature
 
-7. Time over NTP
-
-9.Chart for Temperature
 
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7130.PNG' width = '500'/>
 
+8.Time over NTP
+
+9.Wakeup timer
+
+<img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7131.PNG' width = '500'/>
 
 
 
 
 
-shout-out to to https://randomnerdtutorials.com/, https://www.youtube.com/c/AndreasSpiess, https://lenadesign.org/2020/04/27/css-coffee-express-animation/ and the amazing open spurce community for sharing there stuff and knowledge
+
+
+
+
+
+shout-out to to https://randomnerdtutorials.com/, https://www.youtube.com/c/AndreasSpiess, https://lenadesign.org/2020/04/27/css-coffee-express-animation/ and the amazing open spurce community for sharing there stuff and knowledge!!
