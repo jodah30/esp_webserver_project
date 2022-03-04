@@ -30,8 +30,7 @@ Using microcontroller for precise temperature control on a 30years old Domobar I
 2. PT100 Sensor
 3. Water level
 4. Asynchronous web interface
-5. Visualized water level in CSS picture
-      blue rectangle is actual water level
+5. Visualized water level in CSS picture, blue rectangle represents water level
 
  <p>           
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7126.PNG' width = '400'/>  
