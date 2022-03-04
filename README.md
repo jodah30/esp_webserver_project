@@ -40,10 +40,13 @@ Webserver f
 6.Slider for target temperature
 
 7.Wakeup timer
+
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7131.PNG' width = '500'/>
+
 7. Time over NTP
 
-9.Chart for Temperatur
+9.Chart for Temperature
+
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7130.PNG' width = '500'/>
 
 
