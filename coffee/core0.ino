@@ -9,7 +9,7 @@ for (;;){
     Serial.println("Core 0 now read the temp");
     Serial.println(readBME280Temperature());
     Serial.println(WiFi.status());
-    bollsinZeit();
+    bollsinZeit3();
     previousMillisprintT=currentMillis;
     }
 
