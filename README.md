@@ -1,9 +1,9 @@
 # Temperature control for  a coffee machine
-The old Coffeemaschines from VBM are beatiful and makes amazing coffee. Unfortunately the electronics and control are outdated. For challenging myself and learning new stuff i decide to update the electronics.
+The old Coffee machines from VBM are beautiful and makes amazing coffee. Unfortunately, the electronics and control are outdated. For challenging myself and learning new stuff, I decide to update the electronics.
 ![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/$_59.JPG)
 
-Using microcontroler for precised temperature control on an 30years old Domobar Inox with useless feature like wifi, a webpage in the local network for monitorung and controling
--PID controller
+Using microcontroller for precise temperature control on a 30years old Domobar Inox with useless feature like Wi-Fi, a webpage in the local network for monitoring and controlling
+
 
 ## Hardware
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3111.JPG' width = '500'/>
@@ -15,9 +15,9 @@ Using microcontroler for precised temperature control on an 30years old Domobar 
 5. OLED Display SSD1306
    - actual value
    - target value
-   - waterlevel
+   - water level
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3108.JPG' width = '500'/>
-6. Modified VDO Fueltank Sensor for waterlevel
+6. Modified VDO fuel tank sensor for water level
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3110.JPG' width = '500'/>
 
 
@@ -26,11 +26,11 @@ Using microcontroler for precised temperature control on an 30years old Domobar 
 
  ## Added Features 
 
-1. PID proportional–integral–derivative controller for temperature Controll
+1. PID proportional–integral–derivative controller for temperature control
 2. PT100 Sensor
-3. Waterlevel
-4. Webinterface
-5. Visualized water level in CSS Picture
+3. Water level
+4. Asynchronous web interface
+5. Visualized water level in CSS picture
       blue rectangle is actual water level
 
  <p>           
@@ -41,14 +41,14 @@ Using microcontroler for precised temperature control on an 30years old Domobar 
 6.Slider for target temperature
 
 
-7.Chart for Temperature
+7.Chart for temperature
 
 
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7130.PNG' width = '500'/>
 
 8.Time over NTP
 
-9.Wakeup timer
+9.Wake-up timer
 
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7131.PNG' width = '500'/>
 
@@ -61,4 +61,4 @@ Using microcontroler for precised temperature control on an 30years old Domobar 
 
 
 
-shout-out to to https://randomnerdtutorials.com/, https://www.youtube.com/c/AndreasSpiess, https://lenadesign.org/2020/04/27/css-coffee-express-animation/ and the amazing open spurce community for sharing there stuff and knowledge!!
+Shout-out to https://randomnerdtutorials.com/, https://www.youtube.com/c/AndreasSpiess, https://lenadesign.org/2020/04/27/css-coffee-express-animation/ and the amazing open source community for sharing their stuff and knowledge!!
