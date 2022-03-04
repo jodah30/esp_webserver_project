@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="highcharts.js"></script>
+  <title>Das ist der Titel</title>
+</head>
+
+<body>
+
+  <div class="topnav">
+    <h1>Caf&eacute;Jona </h1>
+    <ul class="topnav"><li><a  href="/">Main</a></li><li><a class="active"  href="/settings">Settings</a></li><ul/>
+  </div>
+
+
+  <div class="topnav">
+    <h1>Temperature Room 3469 </h1>
+  </div>
+  <div id="chart-temperature" class="container"></div>
+  <p><span id="textSliderValue">Solltemperatur: %SLIDERVALUE%&degC</span></p>
+  <p><input type="range" onchange="updateSliderPWM(this)" id="pwmSlider" min="0" max="255" value="%SLIDERVALUE%" step="1" class="slider"></p>
+
+</body>
+
+<script>
+// this sets to utc
+Highcharts.setOptions({
+global: {
+useUTC: false
+}
+});
+var chartT = new Highcharts.Chart({
+  chart:{ renderTo : 'chart-temperature' },
+  title: { text: 'PT100' },
+  series: [{
+    showInLegend: false,
+    data: []
+  }],
+  plotOptions: {
+    line: { animation: false,
+      dataLabels: { enabled: true }
+    },
+    series: { color: '#059e8a' }
+  },
+  xAxis: { type: 'datetime',
+    dateTimeLabelFormats: { second: '%H:%M' }
+  },
+  yAxis: {
+    title: { text: 'Temperature (Celsius)' }
+    //title: { text: 'Temperature (Fahrenheit)' }
+  },
+  credits: { enabled: false }
+});
+setInterval(function ( ) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var x = (new Date()).getTime(),
+          y = parseFloat(this.responseText);
+      //console.log(this.responseText);
+      if(chartT.series[0].data.length > 60) {
+        chartT.series[0].addPoint([x, y], true, true, true);
+      } else {
+        chartT.series[0].addPoint([x, y], true, false, true);
+      }
+    }
+  };
+  xhttp.open("GET", "/temperature", true);
+  xhttp.send();
+}, 1000 ) ;
+
+</script>
+
+<script>
+function updateSliderPWM(element) {
+  var sliderValue = document.getElementById("pwmSlider").value;
+
+  document.getElementById("textSliderValue").innerHTML = "Solltemperatur: " + sliderValue + "&degC" ;
+  console.log(sliderValue);
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "/slider?value="+sliderValue, true);
+  xhr.send();
+}
+
+</script>
+
+
+</html>
