@@ -1,6 +1,7 @@
 # Temperatur control for  a coffee maschine
 The old Coffeemaschines from VBM are beatiful and makes amazing coffee. Unfortunately the electronics and control are outdated. For challenging myself and learning new stuff i decide to update the electronics.
 ![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/$_59.JPG)
+
 Using microcontroler for precised temperature control on an 30years old Domobar Inox with useless feature like a webpage in the local network for monitorung and controling
 -PID controller
 
