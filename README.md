@@ -5,19 +5,18 @@ Using microcontroler for precised temperature control on an 30years old Domobar 
 -PID controller
 Webserver f
 ## Hardware
+<img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3111.JPG' width = '500'/>
 
 1. Esp32
 2. Measuring Amplifier MAX 31865
 3. PT100
 4. Solid-State-Relay
 5. OLED Display SSD1306
-6. Modified VDO Fueltank Sensor for waterlevel
+<img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3108.JPG' width = '500'/>
+7. Modified VDO Fueltank Sensor for waterlevel
+<img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3110.JPG' width = '500'/>
 
-<img scr='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3108.JPG' width = '100'>
 
-![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3110.JPG)
-
-![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3111.JPG)
 
 
 
@@ -27,17 +26,21 @@ Webserver f
 2. PT100 Sensor
 3. Waterlevel
 4. Webinterface
-5.Slider for target temperature
-6.Wakeup timer
+5. Visualized water level in CSS Picture
+
+
+<img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7126.PNG' width = '400'>
+<img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7127.PNG' width = '400'/>
+6.Slider for target temperature
+7.Wakeup timer
+
+<img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7131.PNG' width = '500'/>
 7. Time over NTP
 7.Chart for Temperatur
-8. Visualized water level in CSS Picture
+<img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7130.PNG' width = '500'/>
 
-##Webinterface
-![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7126.PNG)
-![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7127.PNG)
-![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7130.PNG)
-![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7131.PNG)
+
+
 
 
 
