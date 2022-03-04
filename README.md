@@ -2,7 +2,7 @@
 The old Coffee machines from VBM are beautiful and makes amazing coffee. Unfortunately, the electronics and control are outdated. For challenging myself and learning new stuff, I decide to update the electronics.
 ![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/$_59.JPG)
 
-Using microcontroller for precise temperature control on a 30years old Domobar Inox with useless feature like Wi-Fi, a webpage in the local network for monitoring and controlling
+Using microcontroller for precise temperature control on a 30 years old Domobar Inox with useless feature like Wi-Fi, a webpage in the local network for monitoring and controlling
 
 
 ## Hardware
@@ -61,3 +61,4 @@ Using microcontroller for precise temperature control on a 30years old Domobar I
 
 
 Shout-out to https://randomnerdtutorials.com/, https://www.youtube.com/c/AndreasSpiess, https://lenadesign.org/2020/04/27/css-coffee-express-animation/ and the amazing open source community for sharing their stuff and knowledge!!
+Thanks Timm for the cinematic picture
