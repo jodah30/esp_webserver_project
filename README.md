@@ -9,3 +9,6 @@
 6.Wakeup timer
 7.Chart for Temperatur
 8. Visualized water level in CSS Picture
+
+
+shout-out to to https://randomnerdtutorials.com/, https://www.youtube.com/c/AndreasSpiess and the amazing open spurce community for sharing there stuff and knowledge
