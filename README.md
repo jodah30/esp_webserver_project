@@ -12,6 +12,9 @@ Webserver f
 3. PT100
 4. Solid-State-Relay
 5. OLED Display SSD1306
+   - actual value
+   - target value
+   - waterlevel
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3108.JPG' width = '500'/>
 7. Modified VDO Fueltank Sensor for waterlevel
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3110.JPG' width = '500'/>
