@@ -1,4 +1,4 @@
-# Temperatur control for  a coffee machine
+# Temperature control for  a coffee machine
 The old Coffeemaschines from VBM are beatiful and makes amazing coffee. Unfortunately the electronics and control are outdated. For challenging myself and learning new stuff i decide to update the electronics.
 ![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/$_59.JPG)
 
