@@ -30,16 +30,20 @@ Webserver f
 3. Waterlevel
 4. Webinterface
 5. Visualized water level in CSS Picture
+      blue rectangle is actual water level
 
-
-<img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7126.PNG' width = '400'>
+ <p>           
+<img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7126.PNG' width = '400'/>  
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7127.PNG' width = '400'/>
+ </p>   
+ 
 6.Slider for target temperature
-7.Wakeup timer
 
+7.Wakeup timer
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7131.PNG' width = '500'/>
 7. Time over NTP
-7.Chart for Temperatur
+
+9.Chart for Temperatur
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7130.PNG' width = '500'/>
 
 
