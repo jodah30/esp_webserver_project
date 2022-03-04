@@ -15,9 +15,9 @@ Webserver f
 
 <img scr='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3108.JPG' width = '100'>
 
-![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3110.JPG| width=10)
+![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3110.JPG)
 
-![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3111.JPG| width=100)
+![domobar](https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3111.JPG)
 
 
 
