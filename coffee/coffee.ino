@@ -16,6 +16,7 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+
 //#include <NTPClient.h>
 //#inlcude "time.h"
 
@@ -62,7 +63,7 @@ int sollZeitMin;
 
 bool POWER = 0;
 unsigned long previousMillisprintT = 0;
-unsigned long intervalprintT = 30000;
+unsigned long intervalprintT = 10000;
 
 unsigned long previousMillisWifi = 0;
 unsigned long intervalWifi = 10000;
@@ -70,7 +71,7 @@ unsigned long intervalWifi = 10000;
 // Replace with your network credentials
 //const char* ssid = "K-J";
 const char* ssid = "Jonas iPhone";
-const char* password = "!Tru3L0v3!";
+const char* password = PASSWORD;
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);

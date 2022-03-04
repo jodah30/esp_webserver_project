@@ -13,6 +13,6 @@ for (;;){
   // display.display();
   //
   previousMillisWifi = WiFireconnect(previousMillisWifi);
-  
+
   }
 }

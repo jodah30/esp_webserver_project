@@ -39,8 +39,8 @@ String processor(const String& var){
   // buttons for html
   else  if(var == "BUTTONPLACEHOLDER"){
     String buttons = "";
-    buttons += "<h4>Stunden und Minuten f&uuml;r Timer</h4><br /><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S1\" " + State_of_bool(stunde_eins) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >1h</label>";
-    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m5\" " + State_of_bool(minute_funf) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >5m&nbsp</label><br />";
+    buttons += "<h4>Stunden und Minuten f&uuml;r Timer</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S1\" " + State_of_bool(stunde_eins) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >2h</label>";
+    buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m5\" " + State_of_bool(minute_funf) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >05m</label><br />";
 
     buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S2\" " + State_of_bool(stunde_zwei) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >2h</label>";
     buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m10\" " + State_of_bool(minute_zehn) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >10m</label><br />";
