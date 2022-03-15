@@ -23,7 +23,7 @@
 
 
 
-void boolsinZeit3(){
+void bollsinZeit3(){
   if( stunde_eins == 0 && stunde_zwei == 0 && stunde_vier == 0 && stunde_acht == 0){
               sollZeitH=0;
               sollZeitMin=0;
@@ -35,7 +35,7 @@ void boolsinZeit3(){
 else{
 
   sollZeitH=(stunde_eins+(stunde_zwei*2)+(stunde_vier*4)+(stunde_acht*8));
-  sollZeitMin=((minute_funf*5)+(minute_zehn*10)+(minute_zwanzig*20)+(minute_dreisig*30);
+  sollZeitMin=((minute_funf*5)+(minute_zehn*10)+(minute_zwanzig*20)+(minute_dreisig*30));
     if(sollZeitMin>=60){
       sollZeitH+=1;
       sollZeitMin-=60;

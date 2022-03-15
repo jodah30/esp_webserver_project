@@ -71,7 +71,7 @@ unsigned long intervalWifi = 10000;
 // Replace with your network credentials
 //const char* ssid = "K-J";
 const char* ssid = "Jonas iPhone";
-const char* password = PASSWORD;
+//passwod stored in password.ino
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
@@ -140,8 +140,9 @@ ledcSetup(ledChannel, freq, resolution);
 // attach the channel to the GPIO to be controlled
 ledcAttachPin(output, ledChannel);
 ledcWrite(ledChannel, sliderValue.toInt());
-//call wifi function
-connect_to_wifi(ssid, password);
+//call wifi function and password
+
+connect_to_wifi(ssid, callpassword());
 //call  server function
 server_and_requests();
 // Initialize a NTPClient to get time
