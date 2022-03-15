@@ -39,7 +39,7 @@ String processor(const String& var){
   // buttons for html
   else  if(var == "BUTTONPLACEHOLDER"){
     String buttons = "";
-    buttons += "<h4>Stunden und Minuten f&uuml;r Timer</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S1\" " + State_of_bool(stunde_eins) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >2h</label>";
+    buttons += "<h4>Stunden und Minuten f&uuml;r Timer</h4><label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S1\" " + State_of_bool(stunde_eins) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >1h</label>";
     buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"m5\" " + State_of_bool(minute_funf) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >05m</label><br />";
 
     buttons += "<label class=\"switch\"><input type=\"checkbox\" onchange=\"toggleCheckbox(this)\" id=\"S2\" " + State_of_bool(stunde_zwei) + "><span class=\"slider_switch\"></span></label><label class=\"switchlabel\" >2h</label>";
@@ -80,39 +80,41 @@ String State_of_bool(bool buttonstate){
   }
 }
 
-bool write_input_to_bool(String inputMessage1, String inputMessage2){
+void write_input_to_bool(String inputMessage1, String inputMessage2){
     if (inputMessage1 == "S1"){
-    stunde_eins= inputMessage2;
-    return stunde_eins;
+    stunde_eins= inputMessage2.toInt();
+
+  //  return stunde_eins;
     }
     else if (inputMessage1 == "S2"){
-    stunde_zwei= inputMessage2;
-    return stunde_zwei;
+    stunde_zwei= inputMessage2.toInt();
+
+  //  return stunde_zwei;
     }
     else if (inputMessage1 == "S4"){
-    stunde_vier= inputMessage2;
-    return stunde_vier;
+    stunde_vier= inputMessage2.toInt();
+    //return stunde_vier;
     }
     else if (inputMessage1 == "S8"){
-    stunde_acht= inputMessage2;
-    return stunde_acht;
+    stunde_acht= inputMessage2.toInt();
+    //return stunde_acht;
     }
 
     if (inputMessage1 == "m5"){
-    minute_funf= inputMessage2;
-    return minute_funf;
+    minute_funf= inputMessage2.toInt();
+  //  return minute_funf;
     }
     else if (inputMessage1 == "m10"){
-    minute_zehn= inputMessage2;
-    return minute_zehn;
+    minute_zehn= inputMessage2.toInt();
+    //return minute_zehn;
     }
     else if (inputMessage1 == "m20"){
-    minute_zwanzig= inputMessage2;
-    return minute_zwanzig;
+    minute_zwanzig= inputMessage2.toInt();
+  //  return minute_zwanzig;
     }
     else if (inputMessage1 == "m30"){
-    minute_dreisig= inputMessage2;
-    return minute_dreisig;
+    minute_dreisig= inputMessage2.toInt();
+  //  return minute_dreisig;
     }
 }
 
@@ -205,6 +207,10 @@ server.on("/update", HTTP_GET, [] (AsyncWebServerRequest *request) {
     inputMessage1 = request->getParam(PARAM_INPUT_1)->value();
     inputMessage2 = request->getParam(PARAM_INPUT_2)->value();
     //digitalWrite(inputMessage1.toInt(), inputMessage2.toInt());
+    Serial.print("inputMessage1 ");
+    Serial.println(inputMessage1);
+    Serial.print("inputMessage2 ");
+    Serial.println(inputMessage2);
     write_input_to_bool(inputMessage1,inputMessage2);
   }
   else {
@@ -282,7 +288,7 @@ unsigned long WiFireconnect( unsigned long previousMillisWifi){
   if(currentMillis - previousMillisWifi >= intervalWifi  && WiFi.status() != WL_CONNECTED){
   Serial.println("Try Reconnect WiFi") ;
   WiFi.disconnect();
-  connect_to_wifi(ssid, password);
+  connect_to_wifi(ssid, callpassword());
 
   Serial.println(WiFi.status());
   previousMillisWifi=currentMillis;
