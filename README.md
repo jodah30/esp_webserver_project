@@ -31,6 +31,7 @@ Using microcontroller for precise temperature control on a 30 years old Domobar 
 3. Water level
 4. Asynchronous web interface
 5. Visualized water level in CSS picture, blue rectangle represents water level
+6. Using both core of the ESP32. One for temperature/controlling, one for the webpage
 
  <p>           
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_7126.PNG' width = '400'/>  
