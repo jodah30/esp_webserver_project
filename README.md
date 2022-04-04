@@ -15,6 +15,7 @@ Using microcontroller for precise temperature control on a 30 years old Domobar 
 5. OLED Display SSD1306
    - actual value
    - target value
+   - process variable
    - water level
 <img src='https://github.com/jodah30/esp_webserver_project/blob/main/pictures/IMG_3108.JPG' width = '500'/>
 6. Modified VDO fuel tank sensor for water level
