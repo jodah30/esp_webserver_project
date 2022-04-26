@@ -1,25 +1,5 @@
 
 
-// int, int returntime(){
-//   struct tm timeinfo;
-//     if(!getLocalTime(&timeinfo)){
-//     Serial.println("Failed to obtain time");
-//     return;
-//   }
-//   ZeitH ==
-//
-//       struct tm timeinfo;
-//       if(!getLocalTime(&timeinfo)){
-//         Serial.println("Failed to obtain time");
-//         return;
-//       }
-//       ZeitH==timeinfo.tm_hour;
-//       Serial.print("hier kommt der versuch: ");
-//       Serial.println(ZeitH);
-//
-//
-//
-// }
 
 
 
