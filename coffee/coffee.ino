@@ -11,6 +11,8 @@
   #include <ESPAsyncWebServer.h>
   #include <FS.h>
 #endif
+#include <Preferences.h>
+Preferences preferences;
 #include <Adafruit_MAX31865.h>
 #include <SPI.h>
 #include <Wire.h>
@@ -31,27 +33,6 @@
 #define OLED_RESET 13
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT,OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
 
-  // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
-// if(!display.begin(SSD1306_SWITCHCAPVCC)) {
-//   Serial.println(F("SSD1306 allocation failed"));
-//   for(;;); // Don't proceed, loop forever
-// }
-
-
-
-
-//Comment out above, uncomment this block to use hardware SPI
-// #define OLED_DC     19
-// #define OLED_CS     17
-// #define OLED_RESET  8
-// Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT,
-//   &SPI, OLED_DC, OLED_RESET, OLED_CS);
-
-
-//#include <NTPClient.h>
-//#inlcude "time.h"
-
-
 
 //Hardware SPi, declare Pin
 Adafruit_MAX31865 thermo = Adafruit_MAX31865(5);   //
@@ -66,6 +47,7 @@ Adafruit_MAX31865 thermo = Adafruit_MAX31865(5);   //
 const int output =2; //gpio led
 String sliderValue = "80";
 String waterValue= "80";
+String standbyValue ="92";
 const char* PARAM_INPUT_1 = "output";
 const char* PARAM_INPUT_2 = "state";
 
@@ -120,38 +102,20 @@ const int   daylightOffset_sec = 3600;
 // creating task handle
 TaskHandle_t Task0;
 TaskHandle_t Task1;
-//Declaration OLED
-
-//Adafruit_SSD1306 display(128,32, &Wire, -1);
-// #define SCREEN_WIDTH 128 // OLED display width, in pixels
-// #define SCREEN_HEIGHT 32 // OLED display height, in pixels
-// #define I2C_SDA 33 // new pins fot set others then the degailt one
-// #define I2C_SCL 32
-// #define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
-// #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
-// //display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-// TwoWire I2COLED = TwoWire(1);
-//
-// Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &I2COLED, OLED_RESET);
-
 
 void setup(){
+
+  //create namespace
+  preferences.begin("settings", false);
+  sliderValue=preferences.getString("sliderValue","");
+  standbyValue=preferences.getString("standbyValue","");
 
 
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3D for 128x64
     Serial.println(F("SSD1306 allocation failed"));
     for(;;);
   }
-  delay(2000);
-  display.clearDisplay();
 
-  display.setTextSize(1);
-  display.setTextColor(WHITE);
-  display.setCursor(0, 10);
-  // Display static text
-  display.println("");
-  display.println("...is better than Hello, world!");
-  display.display();
 //initialize Cores
 //create Task to run code in it
 xTaskCreatePinnedToCore(
