@@ -17,6 +17,37 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
+
+//OLED
+// DO =clock, D1= MOSI,sda, DC=data command ,
+#define SCREEN_WIDTH 128 // OLED display width, in pixels
+#define SCREEN_HEIGHT 64 // OLED display height, in pixels
+
+// Declaration for SSD1306 display connected using software SPI (default case):
+#define OLED_MOSI   23
+#define OLED_CLK   18
+#define OLED_DC    19
+#define OLED_CS    17
+#define OLED_RESET 13
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT,OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
+
+  // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
+// if(!display.begin(SSD1306_SWITCHCAPVCC)) {
+//   Serial.println(F("SSD1306 allocation failed"));
+//   for(;;); // Don't proceed, loop forever
+// }
+
+
+
+
+//Comment out above, uncomment this block to use hardware SPI
+// #define OLED_DC     19
+// #define OLED_CS     17
+// #define OLED_RESET  8
+// Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT,
+//   &SPI, OLED_DC, OLED_RESET, OLED_CS);
+
+
 //#include <NTPClient.h>
 //#inlcude "time.h"
 
@@ -107,7 +138,20 @@ TaskHandle_t Task1;
 void setup(){
 
 
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3D for 128x64
+    Serial.println(F("SSD1306 allocation failed"));
+    for(;;);
+  }
+  delay(2000);
+  display.clearDisplay();
 
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(0, 10);
+  // Display static text
+  display.println("");
+  display.println("...is better than Hello, world!");
+  display.display();
 //initialize Cores
 //create Task to run code in it
 xTaskCreatePinnedToCore(
