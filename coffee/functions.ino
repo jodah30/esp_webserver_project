@@ -36,6 +36,10 @@ String processor(const String& var){
   if (var == "SLIDERVALUE"){
     return sliderValue;
   }
+  //return standby_timer value,
+  if (var == "STANDBYTIMER"){
+    return standbyValue;
+  }
   // buttons for html
   else  if(var == "BUTTONPLACEHOLDER"){
     String buttons = "";
@@ -190,12 +194,32 @@ server.on("/slider", HTTP_GET, [] (AsyncWebServerRequest *request) {
     inputMessage = request->getParam(PARAM_INPUT)->value();
     sliderValue = inputMessage;
     ledcWrite(ledChannel, sliderValue.toInt());
+    preferences.putString("sliderValue",sliderValue);
   }
   else {
     inputMessage = "No message sent";
   }
   Serial.println(inputMessage);
   request->send(200, "text/plain", "OK");
+});
+
+// standby
+server.on("/standby", HTTP_GET, [] (AsyncWebServerRequest *request) {
+String inputMessage;
+Serial.print("get /standy request ");
+// GET input1 value on <ESP_IP>/slider?value=<inputMessage>
+if (request->hasParam(PARAM_INPUT)) {
+  inputMessage = request->getParam(PARAM_INPUT)->value();
+  standbyValue = inputMessage;
+  Serial.print("Wert für standy_timer ist ");
+  Serial.println(standbyValue);
+  preferences.putString("standbyValue",standbyValue);
+}
+else {
+  inputMessage = "No message sent";
+}
+Serial.println(inputMessage);
+request->send(200, "text/plain", "OK");
 });
 
 //get button state
