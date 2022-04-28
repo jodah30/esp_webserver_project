@@ -87,7 +87,7 @@ const char* ssid = "Jonas iPhone";
 AsyncWebServer server(80);
 
 // Define NTP Client to get time
-const char* ntpServer = "pool.ntp.org"; 
+const char* ntpServer = "pool.ntp.org";
 const long  gmtOffset_sec = 3600;
 const int   daylightOffset_sec = 3600;
 //const char updateInterval = 36000000;  // In ms
@@ -146,6 +146,8 @@ void setup(){
       //call wifi function and password
       connect_to_wifi(ssid, callpassword());
 
+
+      
       //call  server function
       server_and_requests();
 
