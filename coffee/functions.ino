@@ -149,7 +149,7 @@ void connect_to_wifi(const char* ssid, const char* password){
     Serial.println("Connecting to WiFi..");
 
   }
-// Print ESP32 Local IP Address
+  // Print ESP32 Local IP Address
   Serial.println(WiFi.localIP());
 
 }

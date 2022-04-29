@@ -20,11 +20,12 @@ Preferences preferences;
 #include <Adafruit_SSD1306.h>
 
 
+
+
 //OLED
 // DO =clock, D1= MOSI,sda, DC=data command ,
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
-
 // Declaration for SSD1306 display connected using software SPI (default case):
 #define OLED_MOSI   23
 #define OLED_CLK   18
@@ -33,20 +34,47 @@ Preferences preferences;
 #define OLED_RESET 13
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT,OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
 
-
 //Hardware SPi, declare Pin
-Adafruit_MAX31865 thermo = Adafruit_MAX31865(5);   //
+Adafruit_MAX31865 thermo = Adafruit_MAX31865(5);
+#define RREF      430.0 // The value of the Rref resistor
+#define RNOMINAL  100.0 // The 'nominal' 0-degrees-C resistance of the sensor, 100.0 for PT100, 1000.0 for PT1000
 
-// The value of the Rref resistor. Use 430.0 for PT100 and 4300.0 for PT1000
-#define RREF      430.0
-// The 'nominal' 0-degrees-C resistance of the sensor
-// 100.0 for PT100, 1000.0 for PT1000
-#define RNOMINAL  100.0
+//create button_status and pins
+int button_hot_pin      =   1;
+int button_pump_pin     =   2;
+int button_hebel_pin    =   3;
+int button_power_pin    =   4;
 
+int led_hot_pin         =   7;
+int led_pump_pin        =   2;
+int led_power_pin       =   5;
+
+int relay_pump_pin      =   5;
+int relay_power_pin     =   6;
+int relay_ss            =   7;
+int waterlevel_pin      =   8;
+
+bool button_hot_status   =  0;
+bool button_pump_status  =  0;
+bool button_hebel_status =  0;
+bool button_power_status =  0;
+
+String string_setpoint, string_temperature, string_power;
+
+String T, S, P, Timer;
+double Setpoint, Input, Output, Standart, Drinnen;
+
+//doubles for timers
+double idle_millis;
+
+int analog_waterlevel;
+int analog_waterlevel_max;
+int analog_waterlevel_min;
+int digital_waterlevel;
 // Settings for build in led and Slider
 const int output =2; //gpio led
 String sliderValue = "80";
-String waterValue= "80";
+String waterValue ;
 String standbyValue ="92";
 const char* PARAM_INPUT_1 = "output";
 const char* PARAM_INPUT_2 = "state";
@@ -98,6 +126,11 @@ TaskHandle_t Task1;
 
 void setup(){
 
+  pinMode(button_hot_pin,INPUT);
+  pinMode(button_pump_pin,INPUT);
+  pinMode(button_hebel_pin,INPUT);
+  pinMode(button_power_pin,INPUT);
+
   //create namespace to store values
   preferences.begin("settings", false);
   sliderValue=preferences.getString("sliderValue","");
@@ -115,15 +148,15 @@ void setup(){
     0);                    /* Core */
     delay(500);
 
-    xTaskCreatePinnedToCore(
-      codeForCore1,            /* Task function. */
-      "Task1",                 /* name of task. */
-      8192,                    /* Stack size of task */
-      NULL,                     /* parameter of the task */
-      1,                        /* priority of the task */
-      &Task1,                   /* Task handle to keep track of created task */
-      1);                    /* Core */
-      delay(500);
+  xTaskCreatePinnedToCore(
+    codeForCore1,            /* Task function. */
+    "Task1",                 /* name of task. */
+    8192,                    /* Stack size of task */
+    NULL,                     /* parameter of the task */
+    1,                        /* priority of the task */
+    &Task1,                   /* Task handle to keep track of created task */
+    1);                    /* Core */
+    delay(500);
 
       // Serial port for debugging purposes
       Serial.begin(115200);
@@ -147,7 +180,7 @@ void setup(){
       connect_to_wifi(ssid, callpassword());
 
 
-      
+
       //call  server function
       server_and_requests();
 
