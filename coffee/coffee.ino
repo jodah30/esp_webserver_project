@@ -190,10 +190,10 @@ void setup(){
     }
 
     void loop(){
-      display_for_timer();
+    //  display_for_timer();
       Serial.println("new line");
       delay(5000);
-      display_when_idle();
+    //  display_when_idle();
       delay(5000);
       display.clearDisplay();
       display.println("Chsahdas");
