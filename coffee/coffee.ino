@@ -40,19 +40,19 @@ Adafruit_MAX31865 thermo = Adafruit_MAX31865(5);
 #define RNOMINAL  100.0 // The 'nominal' 0-degrees-C resistance of the sensor, 100.0 for PT100, 1000.0 for PT1000
 
 //create button_status and pins
-int button_hot_pin      =   1;
-int button_pump_pin     =   2;
-int button_hebel_pin    =   3;
-int button_power_pin    =   4;
+int button_hot_pin      =   32;
+int button_pump_pin     =   35;
+int button_hebel_pin    =   33;
+int button_power_pin    =   34;
 
-int led_hot_pin         =   7;
-int led_pump_pin        =   2;
-int led_power_pin       =   5;
+int led_hot_pin         =   27;
+int led_pump_pin        =   26;
+int led_power_pin       =   25;
 
-int relay_pump_pin      =   5;
-int relay_power_pin     =   6;
-int relay_ss            =   7;
-int waterlevel_pin      =   8;
+int relay_pump_pin      =   14;
+int relay_power_pin     =   12;
+int relay_ss            =   22;
+int waterlevel_pin      =   0;
 
 bool button_hot_status   =  0;
 bool button_pump_status  =  0;
@@ -190,5 +190,13 @@ void setup(){
     }
 
     void loop(){
+      display_for_timer();
+      Serial.println("new line");
+      delay(5000);
+      display_when_idle();
+      delay(5000);
+      display.clearDisplay();
+      display.println("Chsahdas");
+      display.display();
 
     }
