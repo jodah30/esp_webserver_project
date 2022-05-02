@@ -38,7 +38,7 @@ void button_status(){
         button_hot_status   =! button_hot_status;
       }
       button_hot_pin_old=button_hot_pin_new;
-      else if(digitalRead(button_pump_pin)){
+      if(digitalRead(button_pump_pin)){
         button_pump_status  =! button_pump_status;
       }
       else if(digitalRead(button_hebel_pin)){

@@ -39,7 +39,7 @@ void codeForCore0( void * parameter )
       // }
 
       // PowerLampe
-      ZielTemp();
+      //ZielTemp();
 
 
     }

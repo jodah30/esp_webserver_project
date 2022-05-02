@@ -186,7 +186,7 @@ void setup(){
 
       //define ntp and Setup
       configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
-
+      display_for_timer();
     }
 
     void loop(){
