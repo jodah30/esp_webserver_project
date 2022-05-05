@@ -32,7 +32,8 @@ Preferences preferences;
 #define OLED_DC    19
 #define OLED_CS    17
 #define OLED_RESET 13
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT,OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT,
+  OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
 
 //Hardware SPi, declare Pin
 Adafruit_MAX31865 thermo = Adafruit_MAX31865(5);
@@ -58,6 +59,9 @@ bool button_hot_status   =  0;
 bool button_pump_status  =  0;
 bool button_hebel_status =  0;
 bool button_power_status =  0;
+
+boolean button_hot_pin_new;
+boolean button_hot_pin_old;
 
 String string_setpoint, string_temperature, string_power;
 
@@ -126,7 +130,7 @@ TaskHandle_t Task1;
 
 void setup(){
 
-  pinMode(button_hot_pin,INPUT);
+  pinMode(button_hot_pin,INPUT_PULLDOWN);
   pinMode(button_pump_pin,INPUT);
   pinMode(button_hebel_pin,INPUT);
   pinMode(button_power_pin,INPUT);
@@ -161,7 +165,7 @@ void setup(){
       // Serial port for debugging purposes
       Serial.begin(115200);
       //start temp
-      thermo.begin(MAX31865_2WIRE);  // set to 2WIRE or 4WIRE as necessary
+    //  thermo.begin(MAX31865_2WIRE);  // set to 2WIRE or 4WIRE as necessary
       Serial.println("thermo begin");
 
       //start displayBtn
@@ -178,25 +182,14 @@ void setup(){
 
       //call wifi function and password
       connect_to_wifi(ssid, callpassword());
-
-
-
       //call  server function
       server_and_requests();
-
       //define ntp and Setup
       configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
-      display_for_timer();
+      //display_for_timer();
     }
 
     void loop(){
     //  display_for_timer();
-      Serial.println("new line");
-      delay(5000);
-    //  display_when_idle();
-      delay(5000);
-      display.clearDisplay();
-      display.println("Chsahdas");
-      display.display();
 
     }

@@ -9,13 +9,20 @@ void codeForCore0( void * parameter )
       Serial.println(WiFi.status());
       bollsinZeit3();
       previousMillisprintT=currentMillis;
+      //testscrolltext();
+      display_test();
+
+
     }
+    delay(1);
+
+
 
     //SYSTEM
-    button_status();
+   button_status();
 
 
-    //idle
+  //  idle
     if(button_pump_status == LOW && button_hot_status == LOW && button_hebel_pin == LOW) {
 
       // Soll
@@ -25,24 +32,11 @@ void codeForCore0( void * parameter )
       digitalWrite(led_hot_pin, LOW);
       digitalWrite(led_pump_pin, LOW);
       //Display Normal
-      display_when_idle();
+      //display_when_idle();
       // Für Timer
       idle_millis=millis();
       //Zähler für Kaffee
-
-      // if(Kaffee ==  HIGH)  {
-      //
-      //   SumKaffee=SumKaffee+1;
-      //   EEPROM.update(1,SumKaffee);
-      //   delay(1000);
-      //   Kaffee = LOW;
-      // }
-
-      // PowerLampe
-      //ZielTemp();
-
-
-    }
+   }
     //brew_coffee
 
 

@@ -27,25 +27,38 @@ else{
 
 
 
-//red the state from the Buttons and asign to the bools
+//read the state from the Buttons and asign to the bools
 void button_status(){
       boolean button_hot_pin_new;
       boolean button_hot_pin_old;
 
-      button_hot_pin_new=digitalRead(button_hot_pin);
+      long time=0;
+      long debounce =200;
 
-      if(button_hot_pin_new==1 && button_hot_pin_old==0){
+      button_hot_pin_new=digitalRead(button_hot_pin);
+      Serial.print("button_hot_pin_new:");
+      Serial.println(button_hot_pin_new);
+      Serial.print("button_hot_pin_old:");
+      Serial.println(button_hot_pin_old);
+
+      if(button_hot_pin_new==1 && button_hot_pin_old==0 && millis() - time > debounce){
         button_hot_status   =! button_hot_status;
+        Serial.println("button_hot_status has changed");
+        time = millis();
       }
       button_hot_pin_old=button_hot_pin_new;
+
       if(digitalRead(button_pump_pin)){
         button_pump_status  =! button_pump_status;
+        Serial.println("button_pump_status has changed");
       }
       else if(digitalRead(button_hebel_pin)){
        button_hebel_status  =! button_hebel_status;
+       Serial.println("button_hebel_status has changed");
       }
       else if(digitalRead(button_power_pin)){
        button_power_status  =! button_power_status;
+       Serial.println("button_power_status has changed");
       }
 }
 
