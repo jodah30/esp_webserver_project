@@ -31,6 +31,7 @@ String readBME280Temperature() {
 
 
 
+
 String processor(const String& var){
   //return slidervalue, setpoint of temp
   if (var == "SLIDERVALUE"){

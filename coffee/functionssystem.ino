@@ -29,37 +29,42 @@ else{
 
 //read the state from the Buttons and asign to the bools
 void button_status(){
-      boolean button_hot_pin_new;
-      boolean button_hot_pin_old;
 
-      long time=0;
-      long debounce =200;
+
+      long time1=0;
+      long time2=0;
+      long time3=0;
+      long time4=0;
+      long debounce =100;
 
       button_hot_pin_new=digitalRead(button_hot_pin);
-      Serial.print("button_hot_pin_new:");
-      Serial.println(button_hot_pin_new);
-      Serial.print("button_hot_pin_old:");
-      Serial.println(button_hot_pin_old);
+      button_pump_pin_new=digitalRead(button_pump_pin);
+      button_hebel_pin_new=digitalRead(button_hebel_pin);
+      button_power_pin_new=digitalRead(button_power_pin);
 
-      if(button_hot_pin_new==1 && button_hot_pin_old==0 && millis() - time > debounce){
+      if(button_hot_pin_new==1 && button_hot_pin_old==0 && millis() - time1 > debounce){
         button_hot_status   =! button_hot_status;
-        Serial.println("button_hot_status has changed");
-        time = millis();
+        time1 = millis();
       }
       button_hot_pin_old=button_hot_pin_new;
 
-      if(digitalRead(button_pump_pin)){
-        button_pump_status  =! button_pump_status;
-        Serial.println("button_pump_status has changed");
+      if(button_power_pin_new==1 && button_power_pin_old==0 && millis() - time2 > debounce){
+        button_power_status   =! button_power_status;
+        time2 = millis();
       }
-      else if(digitalRead(button_hebel_pin)){
-       button_hebel_status  =! button_hebel_status;
-       Serial.println("button_hebel_status has changed");
+      button_power_pin_old=button_power_pin_new;
+
+      if(button_hebel_pin_new==1 && button_hebel_pin_old==0 && millis() - time3 > debounce){
+        button_hebel_status   =! button_hebel_status;
+        time3 = millis();
       }
-      else if(digitalRead(button_power_pin)){
-       button_power_status  =! button_power_status;
-       Serial.println("button_power_status has changed");
+      button_hebel_pin_old=button_hebel_pin_new;
+
+      if(button_pump_pin_new==1 && button_pump_pin_old==0 && millis() - time4 > debounce){
+        button_pump_status   =! button_pump_status;
+        time4 = millis();
       }
+      button_pump_pin_old=button_pump_pin_new;
 }
 
 int read_waterlevel(){

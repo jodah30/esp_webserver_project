@@ -63,6 +63,15 @@ bool button_power_status =  0;
 boolean button_hot_pin_new;
 boolean button_hot_pin_old;
 
+boolean button_pump_pin_new;
+boolean button_pump_pin_old;
+
+boolean button_power_pin_new;
+boolean button_power_pin_old;
+
+boolean button_hebel_pin_new;
+boolean button_hebel_pin_old;
+
 String string_setpoint, string_temperature, string_power;
 
 String T, S, P, Timer;
@@ -106,7 +115,7 @@ int sollZeitMin;
 
 bool POWER = 0;
 unsigned long previousMillisprintT = 0;
-unsigned long intervalprintT = 10000;
+unsigned long intervalprintT = 500;
 
 unsigned long previousMillisWifi = 0;
 unsigned long intervalWifi = 10000;
@@ -131,9 +140,9 @@ TaskHandle_t Task1;
 void setup(){
 
   pinMode(button_hot_pin,INPUT_PULLDOWN);
-  pinMode(button_pump_pin,INPUT);
-  pinMode(button_hebel_pin,INPUT);
-  pinMode(button_power_pin,INPUT);
+  pinMode(button_pump_pin,INPUT_PULLDOWN);
+  pinMode(button_hebel_pin,INPUT_PULLDOWN);
+  pinMode(button_power_pin,INPUT_PULLDOWN);
 
   //create namespace to store values
   preferences.begin("settings", false);

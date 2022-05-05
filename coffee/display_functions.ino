@@ -110,6 +110,7 @@ void testdrawrect(void) {
   delay(2000);
 }
 
+
 void testscrolltext(void) {
   display.clearDisplay();
 
