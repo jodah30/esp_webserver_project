@@ -1,12 +1,12 @@
-void codeForCore1( void * parameter )
+void codeForCore0( void * parameter )
 {
   for (;;){
     delay(1);
     unsigned long currentMillis = millis();
 
     if(currentMillis - previousMillisprintT >= intervalprintT){
-      printLocalTime();
-      Serial.println(WiFi.status());
+      //printLocalTime();
+      //Serial.println(WiFi.status());
       bollsinZeit3();
       previousMillisprintT=currentMillis;
       //testscrolltext();
@@ -21,7 +21,8 @@ void codeForCore1( void * parameter )
 
     //SYSTEM
    button_status();
-
+   Serial.print("button_status is read by Core:  ");
+   Serial.println(xPortGetCoreID());
 
   //  idle
     if(button_pump_status == LOW && button_hot_status == LOW && button_hebel_pin == LOW) {

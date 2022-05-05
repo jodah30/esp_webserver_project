@@ -94,6 +94,8 @@ void display_test(){
   display.println(button_pump_pin);
   display.setCursor(40,30);
   display.println(button_pump_status);
+  display.setCursor(00,40);
+  display.println("Wifi Status");
   delay(1);
   display.display();
   delay(1);
