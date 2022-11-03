@@ -63,4 +63,4 @@ Using microcontroller for precise temperature control on a 30 years old Domobar 
 
 
 Shout-out to https://randomnerdtutorials.com/, https://www.youtube.com/c/AndreasSpiess, https://lenadesign.org/2020/04/27/css-coffee-express-animation/ and the amazing open source community for sharing their stuff and knowledge!!
-Thanks Timm for the cinematic picture
+Thanks Timm for the cinematic picture!
